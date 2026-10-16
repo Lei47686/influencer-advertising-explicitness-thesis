@@ -5,7 +5,7 @@ This repository contains program code and supporting experimental materials asso
 ## Repository Structure
 
 - `study1/`: Study 1 computational code, the final Advertising Explicitness Score implementation, and the Streamlit analysis interface.
-- `study2/`: a placeholder for final experimental code and supporting stimulus information.
+- `study2/`: the final Study 2 stimulus-development and curation implementation, together with supporting stimulus information.
 - `materials/`: supplementary reproducibility materials.
 
 ## Study 1
@@ -19,7 +19,7 @@ Study 2 is a randomized between-subjects experiment comparing two conditions:
 - High Integration
 - Hard Sell
 
-The design uses AI-generated matched stimuli and randomized condition assignment. Stimulus links are provided below and in `study2/stimuli/README.md`. Study 2 experimental code will be included only after its alignment with the dissertation has been confirmed.
+The design uses AI-generated matched stimuli and randomized condition assignment. The repository includes the final Study 2 stimulus-development, generation, analysis, screening, and selection implementation. Stimulus links are provided below and in `study2/stimuli/README.md`.
 
 ## Experimental Stimuli
 

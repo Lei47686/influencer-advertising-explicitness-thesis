@@ -6,7 +6,9 @@ torch
 torchvision
 sentence-transformers
 faster-whisper
+google-genai
 huggingface-hub
 langgraph
+python-dotenv
 streamlit
 statsmodels

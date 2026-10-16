@@ -1,0 +1,12 @@
+numpy
+pandas
+Pillow
+opencv-python
+torch
+torchvision
+sentence-transformers
+faster-whisper
+huggingface-hub
+langgraph
+streamlit
+statsmodels

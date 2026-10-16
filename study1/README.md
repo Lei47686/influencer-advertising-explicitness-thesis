@@ -48,21 +48,38 @@ Inferential analyses use continuous AES. The Low, Medium, and High categories ar
 - `code/study1_agent.py`: input validation, single-run and batch orchestration, output persistence, batch summaries, and optional regression routines.
 - `code/study1_app.py`: Streamlit interface for single-video and batch workflows.
 
+## Run
+
+From the repository root:
+
+```bash
+streamlit run study1/code/study1_app.py
+```
+
 ## Expected Inputs
 
 At a high level, a single-video run expects:
 
-- a video file;
+- a video file in MP4, MOV, AVI, or MKV format;
 - a UTF-8 product-information text file;
-- an independent product-reference image;
-- the video-level metadata required by the workflow.
+- an independent product-reference image in JPG, JPEG, PNG, or WebP format;
+- video-level metadata, entered manually or selected from a CSV row.
 
-Batch processing expects a structured CSV containing media references, product-reference inputs, engagement metadata, dates, and the identifiers required by the code's input schema.
+Single-run metadata includes `video_id`, `creator_id`, `post_date`, `likes`, `comments`, `shares`, and `views`.
 
-The code also requires FFmpeg and FFprobe to be available on the system path for media processing. Model specifications are declared in `study1_code.py`.
+Batch processing expects a structured CSV whose rows contain `video_path`, `product_info_path`, and `product_image_path`, together with the required video, engagement, date, creator, product, and brand metadata fields. Paths in the CSV must resolve on the computer running the application.
+
+## System Requirements
+
+- FFmpeg must be installed and available on `PATH`.
+- A browser is required for the Streamlit interface.
+- Internet access is needed on first use to download pretrained ResNet50 weights, `BAAI/bge-base-zh-v1.5`, and Faster-Whisper `small`.
+- CPU execution is supported but may be slower than accelerated hardware.
 
 ## Output Structure
 
 Single-video runs write a detailed `result.json`, a flattened JSON record, and a flattened CSV record in a run-specific output directory.
 
 Batch runs write combined results, failed-row diagnostics, summary files, modeling outputs, and any explicitly requested regression outputs. Generated outputs are excluded from version control.
+
+The result directory can be configured in the interface. By default, saved results are written under `aes_streamlit_results/` in the directory from which Streamlit is launched. Intermediate frames and audio are created under the operating system's temporary directory in `aes_v3_runs/`; uploaded working files use the temporary `aes_v3_streamlit_uploads/` directory.

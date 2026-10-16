@@ -6,7 +6,19 @@ This repository contains program code and supporting experimental materials asso
 
 - `study1/`: Study 1 computational code, the final Advertising Explicitness Score implementation, and the Streamlit analysis interface.
 - `study2/`: the final Study 2 stimulus-development and curation implementation, together with supporting stimulus information.
-- `materials/`: supplementary reproducibility materials.
+
+## Installation
+
+Python 3.10 or later is required. From the repository root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Internet access is required for Study 1's first-run pretrained-model downloads and for Study 2 operations that call Google GenAI services.
 
 ## Study 1
 
@@ -37,6 +49,8 @@ Research datasets are not included in this public repository. The repository is 
 
 - The repository corresponds to the final dissertation methodology.
 - AES V3 parameters are frozen.
+- The implementation can be inspected and rerun on user-provided inputs.
+- The original Study 1 research data and Study 2 participant data are not included. The exact empirical results reported in the dissertation therefore cannot be fully regenerated from this public repository alone.
 - Exact historical package versions used during initial development were not fully preserved.
 - Therefore, the repository documents required software libraries and model specifications without inventing unrecoverable historical package versions.
 

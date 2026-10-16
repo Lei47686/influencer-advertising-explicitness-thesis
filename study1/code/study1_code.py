@@ -686,18 +686,22 @@ def audio_extraction_node(state: AESState) -> AESState:
 
     audio_path = audio_dir / "temp_audio.wav"
 
-    cmd = [
-        "/opt/homebrew/bin/ffmpeg",
-        "-y",
-        "-i", video_path,
-        "-vn",
-        "-acodec", "pcm_s16le",
-        "-ar", "16000",
-        "-ac", "1",
-        str(audio_path)
-    ]
-
     try:
+        ffmpeg_path = shutil.which("ffmpeg")
+        if not ffmpeg_path:
+            raise FileNotFoundError("FFmpeg must be installed and available on PATH.")
+
+        cmd = [
+            ffmpeg_path,
+            "-y",
+            "-i", video_path,
+            "-vn",
+            "-acodec", "pcm_s16le",
+            "-ar", "16000",
+            "-ac", "1",
+            str(audio_path)
+        ]
+
         result = subprocess.run(
             cmd,
             check=True,
@@ -717,10 +721,10 @@ def audio_extraction_node(state: AESState) -> AESState:
                 **state,
                 "audio_path": "",
                 "audio_extraction_success": False,
-                "audio_error": f"ffmpeg not found: {e}",
+                "audio_error": str(e),
             },
             stage="audio_extraction",
-            message="Audio extraction failed because ffmpeg is not installed or not found in PATH.",
+            message="Audio extraction failed because FFmpeg must be installed and available on PATH.",
             status="AUDIO_EXTRACTION_FAILED",
         )
     except subprocess.CalledProcessError as e:

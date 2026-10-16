@@ -48,31 +48,16 @@ Inferential analyses use continuous AES. The Low, Medium, and High categories ar
 - `code/study1_agent.py`: input validation, single-run and batch orchestration, output persistence, batch summaries, and optional regression routines.
 - `code/study1_app.py`: Streamlit interface for single-video and batch workflows.
 
-## Required Inputs
+## Expected Inputs
 
-A single-video run requires:
+At a high level, a single-video run expects:
 
 - a video file;
 - a UTF-8 product-information text file;
 - an independent product-reference image;
-- video-level metadata used by the workflow.
+- the video-level metadata required by the workflow.
 
-Batch input is provided as CSV. The required columns are:
-
-```text
-video_id
-video_path
-product_info_path
-product_image_path
-likes
-comments
-shares
-views
-post_date
-creator_id
-product_id
-brand_id
-```
+Batch processing expects a structured CSV containing media references, product-reference inputs, engagement metadata, dates, and the identifiers required by the code's input schema.
 
 The code also requires FFmpeg and FFprobe to be available on the system path for media processing. Model specifications are declared in `study1_code.py`.
 
@@ -80,8 +65,4 @@ The code also requires FFmpeg and FFprobe to be available on the system path for
 
 Single-video runs write a detailed `result.json`, a flattened JSON record, and a flattened CSV record in a run-specific output directory.
 
-Batch runs write the combined batch results, failed-row diagnostics, a batch summary, modeling datasets, and any explicitly requested regression outputs in a batch-specific output directory. Generated outputs are excluded from version control.
-
-## Analysis Data
-
-The `data/` directory is reserved for the approved de-identified final analysis-ready dataset. Raw videos, local filesystem paths, credentials, and linkable identifiers should not be included.
+Batch runs write combined results, failed-row diagnostics, summary files, modeling outputs, and any explicitly requested regression outputs. Generated outputs are excluded from version control.
